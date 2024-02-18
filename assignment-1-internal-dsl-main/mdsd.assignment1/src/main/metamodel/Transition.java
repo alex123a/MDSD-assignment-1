@@ -1,12 +1,41 @@
 package main.metamodel;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class Transition{
 	private String event;
 	private State target;
+	private String operation;
+	private String operationVariable;
+	private String conditional;
+	private String conditionalVariable;
+	private Integer conditionalValue;
 	
 	public Transition(String event, State target) {
 		this.event = event;
 		this.target = target;
+	}
+	
+	public Transition(String event, State target, String operation, String operationVariable) {
+		this(event, target);
+		this.operation = operation;
+		this.operationVariable = operationVariable;
+	}
+	
+	public Transition(String event, State target, String conditional, String conditionalVariable, Integer conditionalValue) {
+		this(event, target);
+		this.conditional = conditional;
+		this.conditionalVariable = conditionalVariable;
+		this.conditionalValue = conditionalValue;
+	}
+	
+	
+	public Transition(String event, State target, String operation, String operationVariable, String conditional, String conditionalVariable, Integer conditionalValue) {
+		this(event, target, operation, operationVariable);
+		this.conditional = conditional;
+		this.conditionalVariable = conditionalVariable;
+		this.conditionalValue = conditionalValue;
 	}
 	
 	public String getEvent() {
@@ -16,59 +45,48 @@ public class Transition{
 	public State getTarget() {
 		return this.target;
 	}
+	
+	public boolean hasOperation() {
+		return this.operation != "";
+	}
 
 	public boolean hasSetOperation() {
-		return event == "SET";
+		return this.operation == "set";
 	}
 
 	public boolean hasIncrementOperation() {
-		// TODO Auto-generated method stub
-		return event == "INCREMENT";
+		return this.operation == "increment";
 	}
 
 	public boolean hasDecrementOperation() {
-		// TODO Auto-generated method stub
-		return event == "DECREMENT";
+		return this.operation == "decrement";
 	}
 
 	public Object getOperationVariableName() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.operationVariable;
 	}
 
 	public boolean isConditional() {
-		// TODO Auto-generated method stub
-		return false;
+		return this.conditional != "";
 	}
 
 	public Object getConditionVariableName() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.conditionalVariable;
 	}
 
 	public Integer getConditionComparedValue() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.conditionalValue;
 	}
 
 	public boolean isConditionEqual() {
-		// TODO Auto-generated method stub
-		return false;
+		return this.conditional == "equal";
 	}
 
 	public boolean isConditionGreaterThan() {
-		// TODO Auto-generated method stub
-		return false;
+		return this.conditional == "greaterThan";
 	}
 
 	public boolean isConditionLessThan() {
-		// TODO Auto-generated method stub
-		return false;
+		return this.conditional == "lessThan";
 	}
-
-	public boolean hasOperation() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
 }
