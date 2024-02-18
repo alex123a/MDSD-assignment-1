@@ -1,41 +1,17 @@
 package main.metamodel;
 
-import java.util.HashMap;
-import java.util.Map;
-
 public class Transition{
 	private String event;
 	private State target;
-	private String operation;
-	private String operationVariable;
-	private String conditional;
-	private String conditionalVariable;
-	private Integer conditionalValue;
+	private String operation = "";
+	private String operationVariable = "";
+	private Integer operationValue = 0;
+	private String conditional = "";
+	private String conditionalVariable = "";
+	private Integer conditionalValue = 0;
 	
-	public Transition(String event, State target) {
-		this.event = event;
-		this.target = target;
-	}
-	
-	public Transition(String event, State target, String operation, String operationVariable) {
-		this(event, target);
-		this.operation = operation;
-		this.operationVariable = operationVariable;
-	}
-	
-	public Transition(String event, State target, String conditional, String conditionalVariable, Integer conditionalValue) {
-		this(event, target);
-		this.conditional = conditional;
-		this.conditionalVariable = conditionalVariable;
-		this.conditionalValue = conditionalValue;
-	}
-	
-	
-	public Transition(String event, State target, String operation, String operationVariable, String conditional, String conditionalVariable, Integer conditionalValue) {
-		this(event, target, operation, operationVariable);
-		this.conditional = conditional;
-		this.conditionalVariable = conditionalVariable;
-		this.conditionalValue = conditionalValue;
+	public Transition() {
+		
 	}
 	
 	public String getEvent() {
@@ -62,15 +38,19 @@ public class Transition{
 		return this.operation == "decrement";
 	}
 
-	public Object getOperationVariableName() {
+	public String getOperationVariableName() {
 		return this.operationVariable;
+	}
+	
+	public Integer getOperationValue() {
+		return this.operationValue;
 	}
 
 	public boolean isConditional() {
 		return this.conditional != "";
 	}
 
-	public Object getConditionVariableName() {
+	public String getConditionVariableName() {
 		return this.conditionalVariable;
 	}
 
@@ -88,5 +68,45 @@ public class Transition{
 
 	public boolean isConditionLessThan() {
 		return this.conditional == "lessThan";
+	}
+	
+	public Transition setEvent(String string) {
+		this.event = string;
+		return this;
+	}
+	
+	public Transition setTarget(State state) {
+		this.target = state;
+		return this;
+	}
+	
+	public Transition setOperation(String string) {
+		this.operation = string;
+		return this;
+	}
+	
+	public Transition setOperationVariable(String string) {
+		this.operationVariable = string;
+		return this;
+	}
+	
+	public Transition setOperationValue(Integer value) {
+		this.operationValue = value;
+		return this;
+	}
+	
+	public Transition setConditional(String string) {
+		this.conditional = string;
+		return this;
+	}
+	
+	public Transition setConditionalVariable(String string) {
+		this.conditionalVariable = string;
+		return this;
+	}
+	
+	public Transition setConditionalValue(Integer value) {
+		this.conditionalValue = value;
+		return this;
 	}
 }
